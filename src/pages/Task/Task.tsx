@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -31,9 +30,9 @@ const Task: React.FC<IProps> = (props) => {
         formValues: values,
         id: item?.id || 0,
         onSuccess: () => history.push('/tasks'),
-        onError: (e: AxiosResponse) => {
+        onError: (e) => {
           formikHelpers.setErrors({
-            title: e.data.error,
+            title: e?.response?.data.error,
           });
           formikHelpers.setSubmitting(false);
         },

@@ -16,9 +16,6 @@ export async function caller(
 ): Promise<AxiosResponse> {
   const response = await instance[method](address, params, config).catch(
     (error: AxiosError) => {
-      if (error.response) {
-        throw error.response;
-      }
       throw error;
     },
   );

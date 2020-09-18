@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import { FormikHelpers, useFormik } from 'formik';
 import * as React from 'react';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -20,9 +19,9 @@ const CreateTask: React.FC<IProps> = (props) => {
         createTask({
           formValues: values,
           onSuccess: onClose,
-          onError: (e: AxiosResponse) => {
+          onError: (e) => {
             formikHelpers.setErrors({
-              title: e.data.error,
+              title: e?.response?.data.error,
             });
             formikHelpers.setSubmitting(false);
           },

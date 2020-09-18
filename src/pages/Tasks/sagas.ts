@@ -1,5 +1,6 @@
 import { Action } from 'redux-actions';
 import { takeEvery, call, all, put, delay } from 'redux-saga/effects';
+import { handleResponseError } from '../../utils/error';
 import * as actions from './actions';
 import { GET, DELETE, POST } from '../../utils/api';
 
@@ -10,6 +11,7 @@ function* getTasks() {
     yield put(actions.setTasks(response.data));
   } catch (e) {
     yield put(actions.setTasks(null));
+    yield call(handleResponseError, e);
   }
 }
 
@@ -36,6 +38,9 @@ function* createTask({ payload }: Action<actions.ICreateTask>) {
     payload.onSuccess?.();
   } catch (e) {
     payload.onError?.(e);
+    if (!e.response?.data?.error) {
+      yield call(handleResponseError, e);
+    }
   }
 }
 
@@ -52,6 +57,9 @@ function* editTask({ payload }: Action<actions.IEditTask>) {
     payload.onSuccess?.();
   } catch (e) {
     payload.onError?.(e);
+    if (!e.response?.data?.error) {
+      yield call(handleResponseError, e);
+    }
   }
 }
 
@@ -62,6 +70,7 @@ function* deleteTask({ payload }: Action<number>) {
     yield put(actions.deleteTaskSuccess(payload));
   } catch (e) {
     yield put(actions.deleteTaskFailure(payload));
+    yield call(handleResponseError, e);
   }
 }
 
