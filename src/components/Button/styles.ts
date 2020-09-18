@@ -12,7 +12,7 @@ export default (theme: Theme) =>
       padding: '10px 40px',
       border: '1px solid transparent',
       cursor: 'pointer',
-      transition: 'all 200ms',
+      transition: 'all 100ms',
       textDecoration: 'none',
       color: theme.palette.text.primary,
       display: 'inline-block',
@@ -43,5 +43,6 @@ export default (theme: Theme) =>
     },
     rootDisabled: {
       pointerEvents: 'none',
+      opacity: 0.5,
     },
   });

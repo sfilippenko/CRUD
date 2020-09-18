@@ -9,6 +9,6 @@ export default createStyles({
   },
   title: {
     color: '#4d4d4d',
-    marginBottom: 16,
+    marginBottom: 12,
   },
 });
