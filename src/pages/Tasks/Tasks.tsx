@@ -4,11 +4,11 @@ import Typography from '@material-ui/core/Typography';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import Loader from '../../components/Loader';
 import IAppState from '../../types/state';
-import { ITask } from './types';
 import { getTasks } from './actions';
 import styles from './styles';
 import Button from '../../components/Button';
 import CreateTask from './CreateTask';
+import List from './List';
 
 const Tasks: React.FC<IProps> = (props) => {
   const { loaded, getTasks, classes } = props;
@@ -31,13 +31,13 @@ const Tasks: React.FC<IProps> = (props) => {
         <Typography variant="h1">Список задач</Typography>
         <Button onClick={onOpenModal}>Добавить</Button>
       </div>
+      <List />
       {showModal && <CreateTask onClose={onModalClose} />}
     </div>
   );
 };
 
 interface IProps extends WithStyles<typeof styles> {
-  items: ITask[] | null;
   getTasks: typeof getTasks;
   loaded: boolean;
   loading: boolean;
@@ -45,7 +45,6 @@ interface IProps extends WithStyles<typeof styles> {
 
 export default connect(
   (state: IAppState) => ({
-    items: state.tasks.items,
     loading: state.tasks.loading,
     loaded: state.tasks.loaded,
   }),

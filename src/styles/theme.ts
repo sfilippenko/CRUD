@@ -6,9 +6,12 @@ const breakpoints = createBreakpoints({});
 export default createMuiTheme({
   breakpoints,
   typography: {
+    fontSize: 14,
+    fontFamily: 'Tahoma, Roboto, Helvetica, Arial, sans-serif',
     h1: {
       fontSize: 32,
       fontWeight: 700,
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
     },
   },
   overrides: {
@@ -46,6 +49,17 @@ export default createMuiTheme({
     MuiIconButton: {
       root: {
         padding: 6,
+        '&:disabled': {
+          opacity: 0.5,
+        },
+      },
+    },
+    MuiTableCell: {
+      root: {
+        border: '1px solid #E6E6E6',
+        borderBottom: '1px solid #E6E6E6',
+        fontSize: 14,
+        padding: '11px 20px',
       },
     },
   },

@@ -7,6 +7,7 @@ export default (theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'flex-start',
+      marginBottom: 32,
     },
     [theme.breakpoints.up('sm')]: {
       titleWrapper: {

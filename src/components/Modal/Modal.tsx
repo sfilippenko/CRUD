@@ -24,6 +24,7 @@ const Modal: React.FC<IProps> = (props) => {
       {...dialogProps}
     >
       <IconButton
+        disabled={disabled}
         onClick={disabled ? undefined : onClose}
         classes={{ root: classes.iconButton }}
       >

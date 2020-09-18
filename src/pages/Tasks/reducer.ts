@@ -6,12 +6,14 @@ export interface ITasksState {
   items: ITask[] | null;
   loading: boolean;
   loaded: boolean;
+  loadingIds: number[];
 }
 
 const defaultState: ITasksState = {
   items: null,
   loading: false,
   loaded: false,
+  loadingIds: [],
 };
 
 export default handleActions<ITasksState, any>(
@@ -31,12 +33,32 @@ export default handleActions<ITasksState, any>(
         loading: false,
         loaded: true,
         items: payload,
+        loadingIds: [],
       };
     },
-    [actions.setTask.toString()]: (state, { payload }: Action<ITask>) => {
+    [actions.createTaskSuccess.toString()]: (
+      state,
+      { payload }: Action<ITask>,
+    ) => {
       return {
         ...state,
         items: [...state.items, payload],
+      };
+    },
+    [actions.deleteTask.toString()]: (state, { payload }: Action<number>) => {
+      return {
+        ...state,
+        loadingIds: [...state.loadingIds, payload],
+      };
+    },
+    [actions.deleteTaskDone.toString()]: (
+      state,
+      { payload }: Action<number>,
+    ) => {
+      return {
+        ...state,
+        items: state.items && state.items.filter((item) => item.id !== payload),
+        loadingIds: state.loadingIds.filter((id) => payload !== id),
       };
     },
   },
