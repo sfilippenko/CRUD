@@ -22,7 +22,10 @@ export default handleActions<ITasksState, any>(
         loading: true,
       };
     },
-    [actions.setTasks.toString()]: (state, { payload }: Action<ITask[] | null>) => {
+    [actions.setTasks.toString()]: (
+      state,
+      { payload }: Action<ITask[] | null>,
+    ) => {
       return {
         ...state,
         loading: false,
