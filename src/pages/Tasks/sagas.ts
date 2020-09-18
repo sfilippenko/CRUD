@@ -39,6 +39,22 @@ function* createTask({ payload }: Action<actions.ICreateTask>) {
   }
 }
 
+function* editTask({ payload }: Action<actions.IEditTask>) {
+  try {
+    yield delay(1000);
+    yield call(POST, `/list/${payload.id}`, payload.formValues);
+    yield put(
+      actions.editTaskSuccess({
+        ...payload.formValues,
+        id: payload.id,
+      }),
+    );
+    payload.onSuccess?.();
+  } catch (e) {
+    payload.onError?.(e);
+  }
+}
+
 function* deleteTask({ payload }: Action<number>) {
   try {
     yield delay(1000);
@@ -53,6 +69,7 @@ export default function* () {
   yield all([
     takeEvery(actions.getTasks, getTasks),
     takeEvery(actions.createTask, createTask),
+    takeEvery(actions.editTask, editTask),
     takeEvery(actions.deleteTask, deleteTask),
   ]);
 }

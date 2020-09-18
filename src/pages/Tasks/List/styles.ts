@@ -8,7 +8,7 @@ export default createStyles({
     display: 'flex',
     alignItems: 'center',
     '&>*': {
-      marginRight: 4,
+      marginRight: 28,
       '&:last-child': {
         marginRight: 0,
       },
@@ -16,5 +16,8 @@ export default createStyles({
   },
   deleteIcon: {
     color: '#F4583F',
+  },
+  editIcon: {
+    color: '#666666',
   },
 });

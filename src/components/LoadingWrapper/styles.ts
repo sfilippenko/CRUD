@@ -1,15 +1,13 @@
 import createStyles from '@material-ui/core/styles/createStyles';
 
 export default createStyles({
-  dialog: {
+  wrapper: {
     position: 'relative',
   },
-  iconButton: {
+  progress: {
     position: 'absolute',
-    right: 12,
-    top: 12,
-  },
-  icon: {
-    color: '#FF0000',
+    top: 0,
+    left: 0,
+    width: '100%',
   },
 });

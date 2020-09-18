@@ -45,6 +45,22 @@ export default handleActions<ITasksState, any>(
         items: [...state.items, payload],
       };
     },
+    [actions.editTaskSuccess.toString()]: (
+      state,
+      { payload }: Action<ITask>,
+    ) => {
+      return {
+        ...state,
+        items:
+          state.items &&
+          state.items.map((item) => {
+            if (item.id === payload.id) {
+              return payload;
+            }
+            return item;
+          }),
+      };
+    },
     [actions.deleteTask.toString()]: (state, { payload }: Action<number>) => {
       return {
         ...state,

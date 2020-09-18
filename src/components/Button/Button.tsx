@@ -1,6 +1,7 @@
 import * as React from 'react';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import styles from './styles';
 
 const Button: React.FC<IProps> = (props) => {
@@ -12,6 +13,7 @@ const Button: React.FC<IProps> = (props) => {
     type,
     onClick,
     disabled,
+    to,
   } = props;
   const commonProps = {
     onClick: disabled ? undefined : onClick,
@@ -22,6 +24,13 @@ const Button: React.FC<IProps> = (props) => {
       className,
     ),
   };
+  if (to) {
+    return (
+      <Link to={to} {...commonProps} aria-disabled={disabled}>
+        {children}
+      </Link>
+    );
+  }
   return (
     <button {...commonProps} type={type} disabled={disabled}>
       {children}
@@ -35,6 +44,7 @@ interface IProps extends WithStyles<typeof styles> {
   type?: 'submit' | 'button';
   className?: string;
   disabled?: boolean;
+  to?: string;
 }
 
 export default withStyles(styles)(Button);

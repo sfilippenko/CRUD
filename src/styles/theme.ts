@@ -48,8 +48,11 @@ export default createMuiTheme({
     },
     MuiIconButton: {
       root: {
-        padding: 6,
-        '&:disabled': {
+        padding: 0,
+        '&:hover': {
+          backgroundColor: 'none',
+        },
+        '&:disabled,&[aria-disabled=true]': {
           opacity: 0.5,
         },
       },
@@ -59,7 +62,7 @@ export default createMuiTheme({
         border: '1px solid #E6E6E6',
         borderBottom: '1px solid #E6E6E6',
         fontSize: 14,
-        padding: '11px 20px',
+        padding: '10px 20px',
       },
     },
   },

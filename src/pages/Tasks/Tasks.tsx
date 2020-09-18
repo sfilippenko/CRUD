@@ -14,8 +14,10 @@ const Tasks: React.FC<IProps> = (props) => {
   const { loaded, getTasks, classes } = props;
   const [showModal, setShowModal] = React.useState(false);
   React.useEffect(() => {
-    getTasks();
-  }, [getTasks]);
+    if (!loaded) {
+      getTasks();
+    }
+  }, [getTasks, loaded]);
   const onModalClose = React.useCallback(() => {
     setShowModal(false);
   }, []);

@@ -13,6 +13,9 @@ export default (theme: Theme) =>
       border: '1px solid transparent',
       cursor: 'pointer',
       transition: 'all 200ms',
+      textDecoration: 'none',
+      color: theme.palette.text.primary,
+      display: 'inline-block',
     },
     'root-primary': {
       borderColor: '#39B54A',
@@ -28,6 +31,14 @@ export default (theme: Theme) =>
         background: '#FF0000',
         color: '#fff',
         borderColor: '#FF0000',
+      },
+    },
+    'root-secondary': {
+      borderColor: '#0071BC',
+      '&:hover,&:focus': {
+        background: '#0071BC',
+        color: '#fff',
+        borderColor: '#0071BC',
       },
     },
     rootDisabled: {
