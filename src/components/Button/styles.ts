@@ -10,12 +10,23 @@ export default createStyles({
     cursor: 'pointer',
     transition: 'all 200ms',
   },
-  'root-green': {
+  'root-primary': {
     borderColor: '#39B54A',
     '&:hover,&:focus': {
       background: '#39B54A',
       color: '#fff',
       borderColor: '#39B54A',
     },
+  },
+  'root-error': {
+    borderColor: '#FF0000',
+    '&:hover,&:focus': {
+      background: '#FF0000',
+      color: '#fff',
+      borderColor: '#FF0000',
+    },
+  },
+  rootDisabled: {
+    pointerEvents: 'none',
   },
 });

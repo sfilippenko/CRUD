@@ -33,6 +33,12 @@ export default handleActions<ITasksState, any>(
         items: payload,
       };
     },
+    [actions.setTask.toString()]: (state, { payload }: Action<ITask>) => {
+      return {
+        ...state,
+        items: [...state.items, payload],
+      };
+    },
   },
   defaultState,
 );

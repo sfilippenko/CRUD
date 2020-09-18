@@ -8,12 +8,20 @@ import { ITask } from './types';
 import { getTasks } from './actions';
 import styles from './styles';
 import Button from '../../components/Button';
+import CreateTask from './CreateTask';
 
 const Tasks: React.FC<IProps> = (props) => {
   const { loaded, getTasks, classes } = props;
+  const [showModal, setShowModal] = React.useState(false);
   React.useEffect(() => {
     getTasks();
   }, [getTasks]);
+  const onModalClose = React.useCallback(() => {
+    setShowModal(false);
+  }, []);
+  const onOpenModal = React.useCallback(() => {
+    setShowModal(true);
+  }, []);
   if (!loaded) {
     return <Loader center />;
   }
@@ -21,8 +29,9 @@ const Tasks: React.FC<IProps> = (props) => {
     <div>
       <div className={classes.titleWrapper}>
         <Typography variant="h1">Список задач</Typography>
-        <Button variant="green">Добавить</Button>
+        <Button onClick={onOpenModal}>Добавить</Button>
       </div>
+      {showModal && <CreateTask onClose={onModalClose} />}
     </div>
   );
 };

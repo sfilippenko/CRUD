@@ -1,6 +1,7 @@
+import { Action } from 'redux-actions';
 import { takeEvery, call, all, put, delay } from 'redux-saga/effects';
 import * as actions from './actions';
-import { GET } from '../../utils/api';
+import { GET, POST } from '../../utils/api';
 
 function* getTasks() {
   try {
@@ -12,6 +13,22 @@ function* getTasks() {
   }
 }
 
+function* createTask({ payload }: Action<actions.ICreateTask>) {
+  try {
+    yield delay(1000);
+    const response = yield call(POST, '/list', payload.formValues);
+    yield put(actions.setTask(response));
+    payload.onSuccess?.();
+  } catch (e) {
+    payload.onError?.(e);
+  } finally {
+    payload.onFinally?.();
+  }
+}
+
 export default function* () {
-  yield all([takeEvery(actions.getTasks, getTasks)]);
+  yield all([
+    takeEvery(actions.getTasks, getTasks),
+    takeEvery(actions.createTask, createTask),
+  ]);
 }
