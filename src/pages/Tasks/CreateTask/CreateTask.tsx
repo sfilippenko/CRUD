@@ -20,11 +20,12 @@ const CreateTask: React.FC<IProps> = (props) => {
         createTask({
           formValues: values,
           onSuccess: onClose,
-          onError: (e: AxiosResponse) =>
+          onError: (e: AxiosResponse) => {
             formikHelpers.setErrors({
               title: e.data.error,
-            }),
-          onFinally: () => formikHelpers.setSubmitting(false),
+            });
+            formikHelpers.setSubmitting(false);
+          },
         }),
       );
     },

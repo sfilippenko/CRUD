@@ -36,8 +36,6 @@ function* createTask({ payload }: Action<actions.ICreateTask>) {
     payload.onSuccess?.();
   } catch (e) {
     payload.onError?.(e);
-  } finally {
-    payload.onFinally?.();
   }
 }
 
@@ -45,10 +43,9 @@ function* deleteTask({ payload }: Action<number>) {
   try {
     yield delay(1000);
     yield call(DELETE, `/list/${payload}`);
+    yield put(actions.deleteTaskSuccess(payload));
   } catch (e) {
-    //
-  } finally {
-    yield put(actions.deleteTaskDone(payload));
+    yield put(actions.deleteTaskFailure(payload));
   }
 }
 

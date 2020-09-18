@@ -11,4 +11,5 @@ export const setTasks = createAction<ITask[] | null>('SET_TASKS');
 export const createTask = createAction<ICreateTask>('CREATE_TASK');
 export const createTaskSuccess = createAction<ITask>('CREATE_TASK_SUCCESS');
 export const deleteTask = createAction<number>('DELETE_TASK');
-export const deleteTaskDone = createAction<number>('DELETE_TASK_DONE');
+export const deleteTaskSuccess = createAction<number>('DELETE_SUCCESS');
+export const deleteTaskFailure = createAction<number>('DELETE_TASK_FAILURE');
